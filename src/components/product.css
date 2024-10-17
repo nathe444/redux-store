@@ -3,7 +3,6 @@
   margin: 0 auto;
   padding: 20px;
   text-align: center;
-  
 }
 
 .product-grid {
@@ -58,7 +57,7 @@
 }
 
 .product-button {
-  background-color: #3498db; 
+  background-color: #485c79; 
   color: white; 
   border: none;
   border-radius: 5px;
@@ -69,6 +68,6 @@
 }
 
 .product-button:hover {
-  background-color: #2980b9; 
+  background-color: #23333c; 
   transform: scale(1.05); 
 }

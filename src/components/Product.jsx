@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import "./product.css";
+import { useDispatch } from "react-redux";
+import { add } from "../store/slices/cartSlice";
+
 const Product = () => {
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+
+  const addToCart = (product) => {
+    dispatch(add(product));
+  };
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -23,7 +31,12 @@ const Product = () => {
             <div className="product-info">
               <h3 className="product-title">{product.title}</h3>
               <div className="product-price">${product.price}</div>
-              <button className="product-button">Add to Cart</button>
+              <button
+                className="product-button"
+                onClick={() => addToCart(product)}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         ))}
