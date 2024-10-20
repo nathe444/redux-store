@@ -1,21 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./product.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { add } from "../store/slices/cartSlice";
-import { useSelector } from "react-redux";
 import { getProducts } from "../store/slices/productSlice";
 
 const Product = () => {
   const dispatch = useDispatch();
-  const { data: products } = useSelector((state) => state.product);
+  const {
+    data: products,
+    loading,
+    error,
+  } = useSelector((state) => state.product);
 
   useEffect(() => {
     dispatch(getProducts());
-  }, []);
+  }, [dispatch]);
 
   const addToCart = (product) => {
     dispatch(add(product));
   };
+
+  // Render loading, error, or product list
+  if (loading) {
+    return <div>Loading products...</div>; // Loading state
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>; // Error state
+  }
 
   return (
     <div className="product-container">
