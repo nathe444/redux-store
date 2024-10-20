@@ -2,8 +2,11 @@ import { Outlet, Link } from "react-router-dom";
 import "./RootLayout.css";
 import { Provider } from "react-redux";
 import store from "../store/Store";
+import { useSelector } from "react-redux";
 
 const RootLayout = () => {
+  const cartProducts = useSelector((state) => state.cart);
+
   return (
     <>
       <Provider store={store}>
@@ -15,7 +18,7 @@ const RootLayout = () => {
                 <Link to="/">Products</Link>
               </li>
               <li>
-                <Link to="/cart">Cart 0</Link>
+                <Link to="/cart">Cart ({cartProducts.length})</Link>
               </li>
             </ul>
           </nav>

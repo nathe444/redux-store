@@ -1,6 +1,5 @@
 import Cart from "./components/Cart";
 import Dashboard from "./components/Dashboard";
-import Product from "./components/Product";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -8,6 +7,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import RootLayout from "./components/RootLayout";
+import { Provider } from "react-redux";
+import store from "./store/Store"; // Adjust the path as necessary
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -19,9 +21,9 @@ function App() {
   );
 
   return (
-    <>
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </>
+    </Provider>
   );
 }
 
