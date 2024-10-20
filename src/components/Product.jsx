@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import "./product.css";
 import { useDispatch } from "react-redux";
 import { add } from "../store/slices/cartSlice";
+import { useSelector } from "react-redux";
+import { getProducts } from "../store/slices/productSlice";
 
 const Product = () => {
-  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
+  const { data: products } = useSelector((state) => state.product);
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
 
   const addToCart = (product) => {
     dispatch(add(product));
   };
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
 
   return (
     <div className="product-container">
